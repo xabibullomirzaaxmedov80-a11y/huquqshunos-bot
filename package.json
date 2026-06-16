@@ -1,0 +1,28 @@
+{
+  "name": "uzbek-lawyer-bot",
+  "version": "1.0.0",
+  "description": "AI-powered Uzbek Lawyer Bot and Web Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node bot_script.js",
+    "dev": "node bot_script.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.17.0",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "telegraf": "^4.16.3"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "lawyer",
+    "uzbekistan",
+    "ai"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}
