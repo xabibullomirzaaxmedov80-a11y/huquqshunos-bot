@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huqushunos AI — O'zbekiston huquqiy yordamchi tizimi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div class="brand-text">
+                    <h2>Huqushunos <span>AI</span></h2>
+                    <p>O'zbekiston Qonunchiligi</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <button class="menu-item active" data-tab="chat">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>AI Huqushunos</span>
+                </button>
+                <button class="menu-item" data-tab="docs">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Hujjatlar Generatori</span>
+                </button>
+                <button class="menu-item" data-tab="library">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Qonunlar Kutubxonasi</span>
+                </button>
+                <button class="menu-item" data-tab="bot-settings">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>Telegram Bot</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="theme-toggle" id="themeToggleBtn">
+                    <i class="fa-solid fa-moon"></i>
+                    <span>Tungi rejim</span>
+                </div>
+                <div class="version-tag">v1.2.0-beta</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Qonunlar, moddalar yoki savollarni qidirish..." id="globalSearch">
+                </div>
+                <div class="header-profile">
+                    <div class="status-indicator online">
+                        <span class="dot"></span>
+                        <span class="text">Tizim faol</span>
+                    </div>
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-gavel"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Tabs -->
+            <div class="tab-content-container">
+                <!-- Chat Tab -->
+                <div class="tab-pane active" id="chatTab">
+                    <div class="chat-wrapper">
+                        <div class="chat-messages-container" id="chatMessages">
+                            <!-- Welcome Message -->
+                            <div class="message system-message">
+                                <div class="message-avatar">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="message-bubble">
+                                    <h3>Assalomu alaykum! Men Huqushunos AI botiman.</h3>
+                                    <p>O'zbekiston Respublikasining Mehnat, Fuqarolik, Oila va boshqa kodekslari bo'yicha savollaringizga huquqiy maslahat berishga tayyorman.</p>
+                                    <p class="disclaimer">⚠️ Diqqat: Men sun'iy intellekt yordamchisiman. Muhim huquqiy masalalarda professional advokat bilan maslahatlashish tavsiya etiladi.</p>
+                                    
+                                    <div class="suggested-queries">
+                                        <h4>Ko'p beriladigan savollar:</h4>
+                                        <div class="suggestions-grid">
+                                            <button class="suggest-btn" data-query="Ishdan o'z xohishi bilan bo'shash tartibi qanday?">
+                                                <i class="fa-solid fa-briefcase"></i> Ishdan bo'shash muddati
+                                            </button>
+                                            <button class="suggest-btn" data-query="Aliment miqdori qanday belgilanadi?">
+                                                <i class="fa-solid fa-child"></i> Aliment miqdorlari
+                                            </button>
+                                            <button class="suggest-btn" data-query="Qarz shartnomasi va tilxat qanday tuziladi?">
+                                                <i class="fa-solid fa-hand-holding-dollar"></i> Qarz va Tilxat
+                                            </button>
+                                            <button class="suggest-btn" data-query="Ijara shartnomasini ro'yxatdan o'tkazish majburiymi?">
+                                                <i class="fa-solid fa-house-chimney"></i> Uy ijarasi qoidalari
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-area">
+                            <textarea id="chatInput" placeholder="Huquqiy savolingizni bu yerga yozing (masalan: Mehnat ta'tili necha kun beriladi?)..." rows="1"></textarea>
+                            <button class="send-btn" id="sendBtn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Generator Tab -->
+                <div class="tab-pane" id="docsTab">
+                    <div class="docs-container">
+                        <div class="docs-sidebar">
+                            <h3>Hujjat turi</h3>
+                            <div class="doc-types-list">
+                                <button class="doc-type-btn active" data-doc="resignation">
+                                    <i class="fa-solid fa-file-signature"></i>
+                                    <div class="btn-text">
+                                        <h4>Ariza</h4>
+                                        <p>Ishdan bo'shash haqida ariza</p>
+                                    </div>
+                                </button>
+                                <button class="doc-type-btn" data-doc="rent">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                    <div class="btn-text">
+                                        <h4>Ijara shartnomasi</h4>
+                                        <p>Turar-joy ijarasi shartnomasi</p>
+                                    </div>
+                                </button>
+                                <button class="doc-type-btn" data-doc="receipt">
+                                    <i class="fa-solid fa-money-bill-transfer"></i>
+                                    <div class="btn-text">
+                                        <h4>Tilxat</h4>
+                                        <p>Qarz olganlik haqida tilxat</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-editor-panel">
+                            <div class="doc-form-wrapper">
+                                <h3 id="formTitle">Ishdan bo'shash haqida ariza ma'lumotlari</h3>
+                                <form id="docForm" class="doc-form">
+                                    <!-- Dynamic fields will be inserted here -->
+                                </form>
+                                <div class="form-actions">
+                                    <button class="btn btn-secondary" id="previewDocBtn">
+                                        <i class="fa-solid fa-eye"></i> Oldindan ko'rish
+                                    </button>
+                                    <button class="btn btn-primary" id="generateDocBtn">
+                                        <i class="fa-solid fa-download"></i> Hujjatni yuklab olish
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="doc-preview-wrapper">
+                                <h3>Hujjat ko'rinishi</h3>
+                                <div class="paper-preview" id="paperPreview">
+                                    <!-- Dynamic paper content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Library Tab -->
+                <div class="tab-pane" id="libraryTab">
+                    <div class="library-container">
+                        <div class="library-header">
+                            <h2>O'zbekiston Respublikasi Qonunlar Kutubxonasi</h2>
+                            <p>Eng ko'p qo'llaniladigan kodekslar va huquqiy moddalar to'plami.</p>
+                        </div>
+                        <div class="library-categories">
+                            <button class="lib-cat-btn active" data-category="all">Barchasi</button>
+                            <button class="lib-cat-btn" data-category="mehnat">Mehnat kodeksi</button>
+                            <button class="lib-cat-btn" data-category="oila">Oila kodeksi</button>
+                            <button class="lib-cat-btn" data-category="fuqarolik">Fuqarolik kodeksi</button>
+                            <button class="lib-cat-btn" data-category="ma'muriy">Ma'muriy javobgarlik</button>
+                            <button class="lib-cat-btn" data-category="konstitutsiya">Konstitutsiya</button>
+                        </div>
+                        <div class="library-grid" id="libraryGrid">
+                            <!-- Law cards will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telegram Bot Tab -->
+                <div class="tab-pane" id="bot-settingsTab">
+                    <div class="bot-settings-container">
+                        <div class="settings-card card-main">
+                            <div class="card-header-icon">
+                                <i class="fa-brands fa-telegram"></i>
+                            </div>
+                            <h2>Telegram Botni Ishga Tushirish</h2>
+                            <p>Huqushunos AI botini Telegram messenjerida faollashtiring. Buning uchun sizga Telegram Bot Token kerak bo'ladi.</p>
+                            
+                            <div class="form-group">
+                                <label for="botToken"><i class="fa-solid fa-key"></i> Telegram Bot Token:</label>
+                                <div class="input-with-button">
+                                    <input type="password" id="botToken" placeholder="123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ...">
+                                    <button class="btn-icon-only" id="toggleTokenVisibility" title="Tokenni ko'rsatish/yashirish">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+                                <p class="help-text">Tokenni Telegramdagi <a href="https://t.me/BotFather" target="_blank">@BotFather</a> orqali olishingiz mumkin.</p>
+                            </div>
+                            
+                            <div class="bot-control-buttons">
+                                <button class="btn btn-success" id="startBotBtn">
+                                    <i class="fa-solid fa-play"></i> Botni ishga tushirish
+                                </button>
+                                <button class="btn btn-danger disabled" id="stopBotBtn" disabled>
+                                    <i class="fa-solid fa-stop"></i> Botni to'xtatish
+                                </button>
+                            </div>
+
+                            <div class="bot-status-panel">
+                                <span class="status-label">Bot holati:</span>
+                                <span class="status-badge stopped" id="botStatusBadge">
+                                    <i class="fa-solid fa-circle-xmark"></i> Faol emas
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="settings-card card-console">
+                            <h3><i class="fa-solid fa-terminal"></i> Konsol va Tizim Loglari</h3>
+                            <div class="console-box" id="consoleBox">
+                                <div class="console-line system">[Tizim] Boshqaruv paneli yuklandi.</div>
+                                <div class="console-line system">[Tizim] Bot ishga tushirilishga tayyor. Tokenni kiriting.</div>
+                            </div>
+                            <button class="btn-clear-logs" id="clearLogsBtn"><i class="fa-solid fa-trash-can"></i> Loglarni tozalash</button>
+                        </div>
+                        
+                        <div class="settings-card card-manual">
+                            <h3><i class="fa-solid fa-circle-info"></i> Mustaqil Telegram Botni ishga tushirish</h3>
+                            <p>Agar siz botni o'zingizning shaxsiy serveringizda doimiy ishga tushirmoqchi bo'lsangiz, quyidagi ko'rsatmalardan foydalaning:</p>
+                            <ol class="manual-steps">
+                                <li>
+                                    <strong>Node.js ni o'rnating:</strong>
+                                    <p>Tizimingizda Node.js o'rnatilgan bo'lishi kerak. <a href="https://nodejs.org/" target="_blank">Rasmiy saytdan yuklab oling</a>.</p>
+                                </li>
+                                <li>
+                                    <strong>Bot loyihasini yuklang:</strong>
+                                    <p>Loyihamizda tayyorlangan `bot_script.js` faylini loyiha papkasidan oling.</p>
+                                </li>
+                                <li>
+                                    <strong>Kutubxonalarni yuklang:</strong>
+                                    <pre><code>npm install telegraf dotenv</code></pre>
+                                </li>
+                                <li>
+                                    <strong>Botni ishga tushiring:</strong>
+                                    <pre><code>node bot_script.js</code></pre>
+                                </li>
+                            </ol>
+                            <button class="btn btn-accent" id="exportBotCodeBtn">
+                                <i class="fa-solid fa-file-code"></i> Telegram Bot Kodini yuklab olish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal for Document View -->
+    <div class="modal" id="docModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Hujjat</h3>
+                <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="paper-preview modal-paper" id="modalPaper"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="printDocBtn"><i class="fa-solid fa-print"></i> Chop etish (PDF)</button>
+                <button class="btn btn-primary" id="copyDocBtn"><i class="fa-solid fa-copy"></i> Matnni nusxalash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>
